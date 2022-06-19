@@ -1,0 +1,22 @@
+<div class="main users-new">
+	<div class="container">
+		<div class="form-heading">Log in</div>
+		<div class="form users-form">
+			<div class="form-body">
+				<% if @error_message %>
+				          <div class="form-error">
+				            <%= @error_message %>
+				          </div>
+				        <% end %>
+				<%= form_tag("/login") do  %>
+				<p>Email</p>
+				<input name="email" >
+				<p>Password</p>
+				<!-- Specify the type attribute in the input tag below -->
+				<input name="password" type="password">
+				<input type="submit" value="Log in">
+				<% end %>
+			</div>
+		</div>
+	</div>
+</div>

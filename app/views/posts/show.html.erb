@@ -1,0 +1,43 @@
+<div class="main posts-show">
+	<div class="container">
+		<div class="posts-show-item">
+			<div class="post-user-name">
+				<!-- Fill in the src attribute to display @user's profile image -->
+				<img src="<%= "/assets/user_images/#{@user.image_name}" %>">
+
+				<!-- Add a link to the "User details" page using the link_to method -->
+				<%= link_to(@user.name, "/users/#{@user.id}") %>
+
+			</div>
+			<p>
+
+				<%= @post.content %>
+			</p>
+
+			<div class="post-time">
+
+				<%= @post.created_at %>
+			</div>
+
+		<% if Like.find_by(user_id: @current_user.id, post_id: @post.id) %>
+				<%= link_to("/likes/#{@post.id}/destroy", {method: "post"}) do %>
+				<span class="fas fa-heart" style="color: Tomato;"></span>
+			  <% end %>
+	  <% else %>
+			  <%= link_to("/likes/#{@post.id}/create", {method: "post"}) do %>
+			  <span class="far fa-heart" style="color: Tomato;"></span>
+	  	  <% end %>
+  	<% end %>
+
+
+	<%= @likes_count %>
+
+	<% if @post.user.id==@current_user.id %>
+		<div class="post-menus">
+			<%= link_to("Edit", "/posts/#{@post.id}/edit") %>
+			<%= link_to("Delete", "/posts/#{@post.id}/destroy",{method:"post"}) %>
+		</div>
+	<% end %>
+</div>
+</div>
+</div>
